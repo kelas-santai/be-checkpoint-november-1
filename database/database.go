@@ -32,6 +32,10 @@ func Connect() {
 		&entity.Admin{},
 		&entity.Category{},
 		&entity.Product{},
+
+		&entity.Order{},
+		&entity.OrderItem{},
+		&entity.Table{},
 	)
 
 }
