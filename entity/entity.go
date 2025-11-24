@@ -1,7 +1,7 @@
 package entity
 
 type Users struct {
-	ID       uint   `json:"id"`
+	ID       uint   `json:"id" gorm:"primaryKey;autoIncrement"`
 	Nama     string `json:"nama"`
 	Email    string `json:"email"`
 	Password string `json:"-"`
@@ -10,7 +10,7 @@ type Users struct {
 }
 
 type Admin struct {
-	ID       uint   `json:"id"`
+	ID       uint   `json:"id" gorm:"primaryKey;autoIncrement"`
 	Nama     string `json:"nama"`
 	Email    string `json:"email"`
 	Password string `json:"-"`

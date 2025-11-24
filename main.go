@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"meeting3/controllers"
+	"meeting3/database"
 	"meeting3/tools/static"
 
 	"github.com/gofiber/fiber/v2"
@@ -38,6 +39,8 @@ func Hello(c *fiber.Ctx) error {
 func main() {
 	app := fiber.New()
 
+	database.Connect()
+
 	product := app.Group("product")
 
 	app.Get("/", func(c *fiber.Ctx) error {
@@ -48,9 +51,17 @@ func main() {
 	//----------------users --------------
 	app.Post("/create-user-cara-1", controllers.CreateUserCara1)
 	app.Post("/create-user-cara-2", controllers.CreateUserCara2)
-	app.Get("/get-data-user-by-param/:nama", controllers.GetUserByParameter)
+	app.Get("/get-data-user-by-id", controllers.GetUserByParameter)
+	app.Get("/all-users", controllers.GetAllUser)
 	app.Put("/update-user", controllers.UpdateUsers)
+	app.Delete("/delete-user", controllers.DeleteUsers)
+	app.Get("/get-raw-query", controllers.GetRawQuery)
 	//app.Delete("/delete-user")
+
+	//--------------------admin --------------------
+	admin := app.Group("/admin")
+	admin.Post("/create-admin", controllers.CreateAdmin)
+	admin.Get("/get-admin", controllers.GetAdmin)
 
 	//--------------------product--------------
 	product.Post("/create-product", controllers.CreateProduct)
