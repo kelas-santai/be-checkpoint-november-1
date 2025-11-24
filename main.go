@@ -66,6 +66,9 @@ func main() {
 	admin.Put("/update-admin", controllers.UpdateAdmin)
 	admin.Delete("/delete-admin", controllers.DeleteAdmin)
 
+	//auth Admin
+	//app.Post("/admin/login", controllers.AdminLogin)
+
 	//--------------------product--------------
 	product.Post("/create-product", controllers.CreateProduct)
 	product.Get("/get-product", controllers.GetProduct)
