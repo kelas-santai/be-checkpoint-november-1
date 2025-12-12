@@ -7,6 +7,7 @@ type Users struct {
 	Password  string `json:"-"`
 	Alamat    string `json:"alamat"`
 	NoTelpon  string `json:"no_telpon"`
+	Status    bool   `json:"status"` //aktif atau tidak
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
 }
@@ -20,6 +21,7 @@ type Admin struct {
 	Password  string `json:"-"`
 	Alamat    string `json:"alamat"`
 	NoTelpon  string `json:"no_telpon"`
+	Status    bool   `json:"status"` //aktif atau tidak
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
 }
