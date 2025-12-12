@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"log"
 	"meeting3/controllers"
 	"meeting3/database"
@@ -39,6 +40,7 @@ func Hello(c *fiber.Ctx) error {
 func main() {
 	app := fiber.New()
 
+	app.Use(cors.New())
 	database.Connect()
 
 	product := app.Group("product")

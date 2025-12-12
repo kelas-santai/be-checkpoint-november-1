@@ -11,7 +11,7 @@ import (
 var DB *gorm.DB
 
 func Connect() {
-	user := "root"
+	user := ""
 	password := ""
 	host := "127.0.0.1"
 	port := "3306"
