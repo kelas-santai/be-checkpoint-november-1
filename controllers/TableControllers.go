@@ -18,6 +18,8 @@ func generateToken() string {
 	return hex.EncodeToString(b)
 }
 
+// Tambahab
+// Ok
 func CreateTable(c *fiber.Ctx) error {
 
 	var table map[string]string
