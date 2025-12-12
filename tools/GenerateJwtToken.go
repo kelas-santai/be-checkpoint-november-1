@@ -9,6 +9,7 @@ import (
 
 func GenerateToken(entitys interface{}) string {
 	var name, role, types string
+	var status bool
 	var idAdmin float64 // Mengubah tipe data menjadi string
 
 	switch e := entitys.(type) {
@@ -17,6 +18,7 @@ func GenerateToken(entitys interface{}) string {
 		idAdmin = float64((int(e.ID))) // Contoh penggunaan ID, sesuaikan dengan kebutuhan Anda
 		role = "1"
 		types = "admin"
+		status = e.Status
 		name = e.Nama
 	default:
 		return ""
@@ -25,6 +27,7 @@ func GenerateToken(entitys interface{}) string {
 	claims := jwt.MapClaims{
 		"name":     name,
 		"id_admin": idAdmin,
+		"status":   status,
 		"role":     role,
 		"type":     types,
 		"exp":      time.Now().Add(time.Hour * 72).Unix(),
