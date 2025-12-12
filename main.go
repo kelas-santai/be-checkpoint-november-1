@@ -63,6 +63,7 @@ func main() {
 	//--------------------admin --------------------
 	admin := app.Group("/admin")
 	admin.Post("/create-admin", controllers.CreateAdmin)
+	admin.Post("/login", controllers.AdminLogin)
 	admin.Get("/get-admin", controllers.GetAdmin)
 	admin.Get("/all-admin", controllers.GetAllAdmin)
 	admin.Put("/update-admin", controllers.UpdateAdmin)

@@ -44,6 +44,33 @@ func CreateAdmin(c *fiber.Ctx) error {
 	})
 }
 
+// login admin
+func AdminLogin(c *fiber.Ctx) error {
+	var data map[string]string
+	if err := c.BodyParser(&data); err != nil {
+		return c.Status(400).JSON(fiber.Map{
+			"pesan": "gagal parser body",
+			"err":   err.Error(),
+		})
+	}
+	var admin entity.Admin
+	database.DB.Where("email = ?", data["email"]).First(&admin)
+	if admin.ID == 0 {
+		return c.Status(404).JSON(fiber.Map{
+			"pesan": "Admin tidak ditemukan",
+		})
+	}
+	if !tools.ComparePassword(admin.Password, data["password"]) {
+		return c.Status(400).JSON(fiber.Map{
+			"pesan": "Password salah",
+		})
+	}
+	return c.JSON(fiber.Map{
+		"pesan": "Login berhasil",
+		"data":  admin,
+	})
+}
+
 //	func AdminLogin(c *fiber.Ctx) error {
 //		var data map[string]string
 //		if err := c.BodyParser(&data); err != nil {
