@@ -65,9 +65,10 @@ func AdminLogin(c *fiber.Ctx) error {
 			"pesan": "Password salah",
 		})
 	}
+	t := tools.GenerateToken(admin)
 	return c.JSON(fiber.Map{
 		"pesan": "Login berhasil",
-		"data":  admin,
+		"t":     t,
 	})
 }
 
